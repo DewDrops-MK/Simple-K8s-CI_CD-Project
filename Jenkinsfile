@@ -14,7 +14,14 @@ pipeline {
                       imagePullPolicy: IfNotPresent
                       command:
                       - cat
-                      tty: true'''
+                      tty: true
+                    - name: sonar
+                      image: eclipse-temurin:17-jdk
+                      command:
+                      - cat
+                      tty: true
+                    '''
+                    
         }
     }
     environment {
@@ -41,15 +48,24 @@ pipeline {
         }
         stage('Code Quality Analysis') {
             steps {
-                container('nodejs') {
-                    withSonarQubeEnv('sonarqube') {
-                        sh """
-                        sonar-scanner \
-                        -Dsonar.projectKey=Simple-K8s-CI_CD-Project \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=https://sonarqube.learndevops.ovh/ \
-                        -Dsonar.login=${SONARQUBE_TOKEN}
-                        """
+                container('sonar') {
+                        script {
+                            def scannerHome = tool 'SonarQube-Scanner'
+                            withSonarQubeEnv('sonarqube') {
+                                sh """
+                                echo "===== Java ====="
+                                java -version
+
+                                echo "==== SonarQube Scanner: ===="
+                                ${scannerHome}/bin/sonar-scanner --version
+
+                                echo "Running SonarQube analysis..."
+
+                                ${scannerHome}/bin/sonar-scanner \
+                                    -Dsonar.projectKey=Simple-K8s-CI_CD-Project \
+                                    -Dsonar.sources=.
+                                """
+                        }
                     }
                 }
             }
