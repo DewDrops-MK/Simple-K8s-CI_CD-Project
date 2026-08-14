@@ -1,0 +1,32 @@
+{
+  "name": "simple-k8s-ci_cd-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DewDrops-MK/Simple-K8s-CI_CD-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/DewDrops-MK/Simple-K8s-CI_CD-Project/issues"
+  },
+  "homepage": "https://github.com/DewDrops-MK/Simple-K8s-CI_CD-Project#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "chai": "^6.2.2",
+    "mocha": "^11.8.0",
+    "supertest": "^6.3.3"
+  }
+}
