@@ -31,7 +31,6 @@ pipeline {
                     }  
                 }
             }
-        }
         stage('Run Unit Tests') {
             steps {
                 container('nodejs') {
@@ -51,6 +50,7 @@ pipeline {
                         -Dsonar.host.url=https://sonarqube.learndevops.ovh/ \
                         -Dsonar.login=${SONARQUBE_TOKEN}
                         """
+                    }
                 }
             }
         }
