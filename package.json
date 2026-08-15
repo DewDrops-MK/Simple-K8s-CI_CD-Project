@@ -6,9 +6,11 @@
   "directories": {
     "test": "test"
   },
+
   "scripts": {
-    "test": "mocha"
-  },
+  "start": "node app.js",
+  "test": "mocha"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DewDrops-MK/Simple-K8s-CI_CD-Project.git"
